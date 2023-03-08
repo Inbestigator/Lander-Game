@@ -29,11 +29,10 @@ public class ShipCollisionHandler : MonoBehaviour
         {
             RespawnRocket();
             screen.enabled = true;
-            display.enabled = false;
             Displays.timeScale = 1f;
-            controls.enabled = false;
-            cameras.enabled = false;
-            GetComponent<Rigidbody>().isKinematic = true;        
+            // controls.enabled = false;
+            // cameras.enabled = false;
+            // GetComponent<Rigidbody>().isKinematic = true;        
         }
     }
 
@@ -52,8 +51,11 @@ public class ShipCollisionHandler : MonoBehaviour
         // display.enabled = true;
         controls.enabled = true;
         cameras.enabled = true;
-        GetComponent<Rigidbody>().isKinematic = false;
+        GetComponent<Rigidbody>().isKinematic = true;
         Displays.timeScale = 1f;
+        cameras.camera1.enabled = false;
+        cameras.camera2.enabled = false;
+        cameras.camera3.enabled = true;
     }
 
 }
