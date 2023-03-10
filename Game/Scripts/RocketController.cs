@@ -44,6 +44,7 @@ public class RocketController : MonoBehaviour
     {
         HandleThrust();
         HandleRotation();
+// I'm in the process, what do u think of the plumes when I've been playing?
     }
 
     void HandleInput()
@@ -96,17 +97,6 @@ public class RocketController : MonoBehaviour
         }
         Vector3 tiltForce = tiltPoint.forward * tiltInput * tiltSpeed;
         rb.AddForceAtPosition(tiltForce, thrustPoint.position, ForceMode.Acceleration);
-
-        // // Handle gravity control
-        // if (Input.GetKey(KeyCode.G))
-        // {
-        //     gravity += Time.deltaTime * 0.1f;
-        // }
-        // else if (Input.GetKey(KeyCode.H))
-        // {
-        //     gravity -= Time.deltaTime * 0.1f;
-        //     gravity = Mathf.Max(0.0f, gravity);
-        // }
     }
 
     void HandleThrust()
@@ -117,14 +107,13 @@ public class RocketController : MonoBehaviour
 
     void HandleRotation()
     {
-        // Handle pitch and yaw rotation
+        // Handle pitch rotation
         float pitchInput = Input.GetAxis("Vertical");
         float yawInput = Input.GetAxis("Horizontal");
         Vector3 rotationForce = new Vector3(pitchInput, yawInput, 0.0f) * rotationSpeed;
         rb.AddRelativeTorque(rotationForce, ForceMode.Acceleration);
 
         // Handle roll rotation
-        // float rollInput = 0.0f;
         if (Input.GetKey(KeyCode.A))
         {
             yawInput = -1.0f;
@@ -148,14 +137,13 @@ public class RocketController : MonoBehaviour
         return tilt;
     }
 
-    public float GetRotation()
-    {
-        return rotation;
-    }
+    // public float GetRotation()
+    // {
+    //     return rotation;
+    // }
 
     public float GetPosition()
     {
         return position;
     }
 }
-

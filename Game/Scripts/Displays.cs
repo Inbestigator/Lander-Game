@@ -17,6 +17,8 @@ public class Displays : MonoBehaviour
     private RocketController rocketController;
     public float timeScale = 1f;
 
+    public float speed;
+
     void Start()
     {
         rocketController = FindObjectOfType<RocketController>();
@@ -29,7 +31,7 @@ public class Displays : MonoBehaviour
     void Update()
     {
         UpdateDisplays();
-        float speed = rb.velocity.magnitude;
+        speed = rb.velocity.magnitude;
         speedText.text = "Speed: " + speed.ToString("F1") + " m/s";
     }
 
@@ -61,9 +63,8 @@ public class Displays : MonoBehaviour
         timeScaleText.text = "Time Scale: " + timeScale.ToString("F1") + "x";
     }
 
-
-    // public float TimeScaled()
-    // {
-    //     return timeScale;
-    // }
+    public float Speed()
+    {
+        return speed;
+    }
 }

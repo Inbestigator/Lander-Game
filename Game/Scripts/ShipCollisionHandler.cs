@@ -14,6 +14,10 @@ public class ShipCollisionHandler : MonoBehaviour
     public cameraSwitcher cameras;
     public ShipCollisionHandler winScript; 
     public Displays Displays;
+    public Canvas Lose;
+    public GameObject Ship;
+    public Transform Rocket;
+    public DirtController Dust;
 
     void Start()
     {
@@ -25,14 +29,17 @@ public class ShipCollisionHandler : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ship"))
+        if (collision.gameObject.CompareTag("Ship") && Displays.speed < 25)
         {
             RespawnRocket();
             screen.enabled = true;
-            Displays.timeScale = 1f;
-            // controls.enabled = false;
-            // cameras.enabled = false;
-            // GetComponent<Rigidbody>().isKinematic = true;        
+            Displays.timeScale = 1f;   
+        } else if (collision.gameObject.CompareTag("Ship") && Displays.speed > 25)
+        {
+            Ship.tag = "Ocean";
+        } else if (collision.gameObject.CompareTag("Ship") && Rocket.rotation.x > 15)
+        {
+            Ship.tag = "Ocean";
         }
     }
 
@@ -53,9 +60,7 @@ public class ShipCollisionHandler : MonoBehaviour
         cameras.enabled = true;
         GetComponent<Rigidbody>().isKinematic = true;
         Displays.timeScale = 1f;
-        cameras.camera1.enabled = false;
-        cameras.camera2.enabled = false;
-        cameras.camera3.enabled = true;
+        cameras.currentCameraIndex = 2;
+        Dust.dirt.Stop();
     }
-
 }

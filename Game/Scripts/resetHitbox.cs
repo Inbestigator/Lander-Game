@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class resetShipHitbox : MonoBehaviour
+public class resetHitbox : MonoBehaviour
 {
     public Canvas winScreen;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Reset"))
         {

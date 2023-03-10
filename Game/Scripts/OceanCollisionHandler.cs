@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class OceanCollisionHandler : MonoBehaviour
 {
-    public Vector3 respawnPosition = new Vector3(0, 10, 0); // Customize this to your desired respawn position
+    public Transform Ship;
+    public Vector3 respawnPosition; // Customize this to your desired respawn position
     public Button respawnButton;
     public Canvas screen;
     public Canvas display;
@@ -23,6 +24,11 @@ public class OceanCollisionHandler : MonoBehaviour
         cameras.enabled = true;
     }
 
+    void Update()
+    {
+        respawnPosition = new Vector3(Ship.position.x, (Ship.position.y + 80), (Ship.position.z - 20));
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ocean"))
@@ -32,7 +38,8 @@ public class OceanCollisionHandler : MonoBehaviour
             display.enabled = false;
             controls.enabled = false;
             cameras.enabled = false;
-            GetComponent<Rigidbody>().isKinematic = true;        
+            GetComponent<Rigidbody>().isKinematic = true;   
+            // respawnPosition = new Vector3(Ship.x, (Ship.y + 80), (Ship.z - 20));
         }
     }
 
@@ -45,7 +52,7 @@ public class OceanCollisionHandler : MonoBehaviour
         transform.rotation = Quaternion.identity;
     }
 
-    void respawnButtonClicked()
+    public void respawnButtonClicked()
     {
         screen.enabled = false;
         display.enabled = true;
