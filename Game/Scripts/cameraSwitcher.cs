@@ -1,13 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class cameraSwitcher : MonoBehaviour
 {
     public Camera camera1;
     public Camera camera2;
     public Camera camera3;
+    public Camera camera4;
     [SerializeField]
     public int currentCameraIndex = 0;
+
+    [SerializeField]
+    public InputActionReference indexDown;
 
     private void Start()
     {
@@ -15,6 +20,9 @@ public class cameraSwitcher : MonoBehaviour
         camera1.enabled = true;
         camera2.enabled = false;
         camera3.enabled = false;
+        camera4.enabled = false;
+
+        indexDown.action.Enable();
     }
 
     private void Update()
@@ -22,7 +30,7 @@ public class cameraSwitcher : MonoBehaviour
         // Toggle cameras on V key press
         if (Input.GetKeyDown(KeyCode.V))
         {
-            currentCameraIndex = (currentCameraIndex + 1) % 3;
+            currentCameraIndex = (currentCameraIndex + 1) % 4;
         }
 
         switch (currentCameraIndex)
@@ -31,16 +39,25 @@ public class cameraSwitcher : MonoBehaviour
                 camera1.enabled = true;
                 camera2.enabled = false;
                 camera3.enabled = false;
+                camera4.enabled = false;
                 break;
             case 1:
                 camera1.enabled = false;
                 camera2.enabled = true;
                 camera3.enabled = false;
+                camera4.enabled = false;
                 break;
             case 2:
                 camera1.enabled = false;
                 camera2.enabled = false;
                 camera3.enabled = true;
+                camera4.enabled = false;
+                break;
+            case 3:
+                camera1.enabled = false;
+                camera2.enabled = false;
+                camera3.enabled = false;
+                camera4.enabled = true;
                 break;
         }
 

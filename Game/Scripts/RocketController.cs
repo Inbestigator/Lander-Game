@@ -13,7 +13,6 @@ public class RocketController : MonoBehaviour
     public float gravity;
     public float tiltSpeed;
     public float rotationSpeed;
-
     public Renderer flames;
 
     public Transform thrustPoint;
@@ -28,6 +27,7 @@ public class RocketController : MonoBehaviour
 
     void Update()
     {
+        Cursor.visible = true;
         HandleInput();
 
         if (throttle > 0.0)
@@ -95,6 +95,7 @@ public class RocketController : MonoBehaviour
         {
             tiltInput = 0.7f;
         }
+
         Vector3 tiltForce = tiltPoint.forward * tiltInput * tiltSpeed;
         rb.AddForceAtPosition(tiltForce, thrustPoint.position, ForceMode.Acceleration);
     }

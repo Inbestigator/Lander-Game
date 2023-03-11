@@ -24,6 +24,11 @@ public class DirtController : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit()
+    {
+        dirt.Stop();
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         // if (collision.gameObject.CompareTag("Ship"))

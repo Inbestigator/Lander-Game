@@ -19,6 +19,8 @@ public class Displays : MonoBehaviour
 
     public float speed;
 
+    public float alt;
+
     void Start()
     {
         rocketController = FindObjectOfType<RocketController>();
@@ -54,7 +56,8 @@ public class Displays : MonoBehaviour
     {
         // Position
         Vector3 pos = rocketController.transform.position;
-        positionText.text = "X: " + pos.x.ToString("F0") + " | Y: " + pos.y.ToString("F0") + " | Z: " + pos.z.ToString("F0");
+        alt = pos.y - 11;
+        positionText.text = "Altitude: " + alt.ToString("F0") + "m";
 
         // Throttle
         throttleText.text = "Throttle: " + (rocketController.GetThrottle() * 100).ToString("F0") + "%";

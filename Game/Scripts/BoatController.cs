@@ -4,9 +4,11 @@ public class BoatController : MonoBehaviour
 {
     public float moveSpeed = 10f;
     public float turnSpeed = 90f;
+    public RocketController control;
 
     void Update()
     {
+        Cursor.visible = true;
         // Get input values for horizontal and vertical axes
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
@@ -22,5 +24,10 @@ public class BoatController : MonoBehaviour
 
         // Rotate the boat
         transform.Rotate(Vector3.up, turnAmount, Space.World);
+
+        // if (control.throttle > 37%)
+        // {
+
+        // }
     }
 }

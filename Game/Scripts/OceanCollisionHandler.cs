@@ -15,6 +15,7 @@ public class OceanCollisionHandler : MonoBehaviour
     public cameraSwitcher cameras;
 
     public Displays Displays;
+    public Difficulty difficulty;
 
     void Start()
     {
@@ -26,7 +27,9 @@ public class OceanCollisionHandler : MonoBehaviour
 
     void Update()
     {
-        respawnPosition = new Vector3(Ship.position.x, (Ship.position.y + 80), (Ship.position.z - 20));
+        Cursor.visible = true;
+        respawnPosition = new Vector3(Ship.position.x, ((Ship.position.y + 80) * difficulty.difficulty), ((Ship.position.z - 20) * difficulty.difficulty));
+
     }
 
     private void OnCollisionEnter(Collision collision)
